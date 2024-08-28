@@ -1,0 +1,31 @@
+<%- include("./partials/head.ejs") %>
+  </head>
+
+  <body>
+    <header>
+      <%- include("./partials/navbar.ejs", { accountUser: accountUser }) %>
+    </header>
+    <main class="flex justify-center items-center mt-12">
+      <form action="/join/signup" method="POST" class="rounded-md border-2 border-lime-800 ms-center p-2" id="formSignUp">
+        <div class="flex flex-row justify-around">
+          <label for="login" class="block text-3xl font-medium text-gray-900 cursor-pointer" id="signUpLabel">
+            <%=titleForm%>
+          </label>
+        </div>
+        <div class="mt-6 flex flex-col justify-around items-center">
+          <input type="text" name="email" id="email" placeholder="Your Email"
+            class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 my-5 ">
+            <input type="password" name="password" id="password" placeholder="Your Password"
+            class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 my-5">
+            <img src="../img/hidden.png" id="visible" class="hover:cursor-pointer size-6 absolute mb-20 mt-1 ml-80" alt="iconVisible">
+            <input type="text" name="confirmEmail" id="confirmEmail" placeholder="Confirm Email"
+            class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 my-5">
+          <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password"
+          class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 my-5">
+          <img src="../img/hidden.png" id="visible" class="hover:cursor-pointer size-6 absolute mt-60 mb-3 ml-80" alt="iconVisible">
+        </div>
+        <p>Already have an account? <a href="/join/login" class="text-teal-600"><%=text%></a></p>
+        <button type="submit" id="submitButton" class="relative left-3/4 bg-lime-600 text-white py-2 px-5 rounded-md" onclick="submitSuccess()">Sign Up</button>
+      </form>
+    </main>
+    <%- include("./partials/end.ejs") %>

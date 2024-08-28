@@ -1,0 +1,45 @@
+<nav class="bg-gray-700">
+  <div class="mx-auto max-w-7xl py-2">
+    <div class="relative flex h-16 items-center justify-center m-auto">
+      <div class="flex items-center justify-center">
+        <div class="flex justify-center items-center mb-12">
+          <a href="/"><img class="absolute w-auto rounded-lg size-12 left-1" src="/img/logo.png" alt="Blogspot"></a>
+        </div>
+        <div class="flex items-center justify-center">
+          <a href="/home"
+            class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 text-white">Home</a>
+          <a href="/message"
+            class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 text-white">Messages</a>
+          <a href="/posts"
+            class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 text-white">Posts</a>
+        </div>
+      </div>
+
+      <div class="absolute right-1 flex items-center">
+        <button id="dropdownButton"
+          class="relative flex rounded-full bg-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ml-4 text-white">
+          <img class="h-8 w-8 rounded-full" src="/img/add.png" alt="userIcon">
+        </button>
+        <div id="dropdownMenu" class="absolute right-20 mt-40 w-48 bg-white rounded-md shadow-lg hidden" tabindex="-1">
+          <a href="/message/create" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Message</a>
+          <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Posts</a>
+        </div>
+
+        <button
+          class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ml-4"
+          id="dropdownButton" aria-expanded="false" aria-haspopup="true">
+          <img class="h-8 w-8 rounded-full " src="/img/icon_user.png" alt="userIcon">
+        </button>
+        <div id="dropdownMenu2" class="absolute right-20 mt-40 w-48 bg-white rounded-md shadow-lg hidden" tabindex="-1">
+          <% if (accountUser.length === 0) { %>
+            <a href="/join/signup" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign Up </a>
+            <a href="/join/login" class="block px-4 py-2 text-gray-800 hover:bg-gray-200" id="logout">Login</a>
+          <% } else { %>
+            <a href="/profile" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
+            <a href="/logout" class="block px-4 py-2 text-gray-800 hover:bg-gray-200" id="logout">Log Out</a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

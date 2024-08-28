@@ -1,0 +1,99 @@
+<%- include("./partials/head.ejs") %>
+
+  <header>
+    <%- include("./partials/navbar.ejs", { accountUser: accountUser }) %>
+  </header>
+  <main>
+    <% if (accountUser.length === 0) { %>
+      <script>
+        alert("Please Login or Sign Up")
+        window.location.pathname = "/"
+      </script>
+      <% } else { %>
+        <% if (!create) { %>
+          <% if (messages.length===0) { %>
+            <p class="text-rose-700 text-4xl flex justify-center items-center m=auto">Messages Not Found
+            </p>
+            <% } else { %>
+              <div class="grid grid-cols-3">
+                <% for (let message of messages.reverse()) { %>
+                  <div class="bg-red-600 w-96 p-5 mt-8 mx-8">
+                    <p>From : <%=message.name%>
+                    </p>
+                    <p>Message : <%=message.message%>
+                    </p>
+                  </div>
+                  <% } %>
+                    <% } %>
+              </div>
+              <% } else { %>
+                <form method="POST" action="/message/create">
+                  <div class="flex justify-center items-center">
+                    <div class="border border-neutral-400 rounded-lg py-6 px-12 mt-4 bg-slate-200">
+                      <h2 class="text-base font-semibold leading-7 text-gray-900 text-center">Create Message</h2>
+
+                      <div class="mt-2">
+                        <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                        <div class="mt-2">
+                          <input id="name" name="nameUser" type="text"
+                            class="block w-64 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 sm:text-sm sm:leading-6"
+                            placeholder="Recipient's Name">
+                        </div>
+                      </div>
+
+                      <div class="mt-2">
+                        <label for="about" class="block text-sm font-medium leading-6 text-gray-900">Message</label>
+                        <div class="mt-2">
+                          <textarea id="message" name="message" rows="3"
+                            class="block w-64 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 sm:text-sm sm:leading-6"></textarea>
+                        </div>
+                      </div>
+
+                      <div class="mt-2">
+                        <label for="gender" class="font-medium leading-6 text-gray-900">Gender</label>
+                        <div class="mt-2 flex flex-row gap-x-8">
+                          <div>
+                            <input id="gender" value="male" type="checkbox" name="gender"
+                              class="default:ring-2 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 sm:text-sm sm:leading-6 classCheck"
+                              id="check">
+                            <label for="male">Male</label>
+                          </div>
+                          <div>
+                            <input id="gender" value="female" type="checkbox" name="gender"
+                              class="default:ring-2 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 sm:text-sm sm:leading-6 classCheck"
+                              id="check">
+                            <label for="female">Female</label>
+                          </div>
+                          <div>
+                            <input id="gender" value="other" type="checkbox" name="gender"
+                              class="default:ring-2 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 sm:text-sm sm:leading-6 classCheck"
+                              id="check">
+                            <label for="other">Other</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class=" mt-2">
+                        <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
+                        <input id="country" name="country" type="text"
+                          class="block w-64 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 sm:text-sm sm:leading-6"
+                          placeholder="Indonesia">
+                      </div>
+
+                      <div class="mt-6 flex items-center justify-end gap-x-6">
+                        <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+                        <button type="submit"
+                          class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                          onclick="submitMessage()">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <% } %>
+
+                  <% } %>
+
+
+  </main>
+
+  <%- include("./partials/end.ejs") %>
