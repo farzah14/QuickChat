@@ -4,7 +4,7 @@
     <%- include("./partials/navbar.ejs", { accountUser: accountUser }) %>
   </header>
   <main>
-    <% if (accountUser.length === 0) { %>
+    <% if (accountUser.length===0) { %>
       <script>
         alert("Please Login or Sign Up")
         window.location.pathname = "/"
@@ -17,14 +17,17 @@
             <% } else { %>
               <div class="grid grid-cols-3">
                 <% for (let message of messages.reverse()) { %>
-                  <div class="bg-red-600 w-96 p-5 mt-8 mx-8">
-                    <p>From : <%=message.name%>
-                    </p>
-                    <p>Message : <%=message.message%>
-                    </p>
-                  </div>
-                  <% } %>
-                    <% } %>
+                  <div class="bg-slate-100 shadow-lg rounded-lg p-6 mt-6 mx-auto w-96">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-semibold text-gray-700 truncate max-w-xs">
+                            From: <span class="text-blue-500"><%= message.name %></span>
+                        </h2>
+                    </div>
+                    <p class="text-gray-600"><%= message.message %></p>
+                </div>
+              <% } %>
+              
+            <% } %>
               </div>
               <% } else { %>
                 <form method="POST" action="/message/create">

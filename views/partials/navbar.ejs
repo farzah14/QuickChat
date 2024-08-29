@@ -10,8 +10,6 @@
             class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 text-white">Home</a>
           <a href="/message"
             class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 text-white">Messages</a>
-          <a href="/posts"
-            class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 text-white">Posts</a>
         </div>
       </div>
 
@@ -31,11 +29,11 @@
           <img class="h-8 w-8 rounded-full " src="/img/icon_user.png" alt="userIcon">
         </button>
         <div id="dropdownMenu2" class="absolute right-20 mt-40 w-48 bg-white rounded-md shadow-lg hidden" tabindex="-1">
-          <% if (accountUser.length === 0) { %>
+          <% if (accountUser.length === 0 || isLogout) { %>
             <a href="/join/signup" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign Up </a>
             <a href="/join/login" class="block px-4 py-2 text-gray-800 hover:bg-gray-200" id="logout">Login</a>
           <% } else { %>
-            <a href="/profile" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
+            <a href="/profile" class="block px-4 py-2 text-gray-800 hover:bg-gray-200" id="logout">Profile</a>
             <a href="/logout" class="block px-4 py-2 text-gray-800 hover:bg-gray-200" id="logout">Log Out</a>
           <% } %>
         </div>

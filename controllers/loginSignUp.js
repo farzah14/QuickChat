@@ -1,7 +1,7 @@
 const accountUser = require("../models/accountUser");
 let dataUser;
 try {
-  dataUser = require("../data/account.json")
+	dataUser = require("../data/account.json");
 } catch {
 	dataUser = [];
 }
@@ -11,18 +11,19 @@ exports.signUpPage = (req, res) => {
 		title: "Sign Up Page",
 		text: "Login",
 		titleForm: "Sign Up",
-    accountUser: dataUser,
+		accountUser: dataUser,
+		isLogout: false,
 	});
 };
 
 exports.postSignUp = (req, res) => {
-	const { email, password } = req.body;
-	const { confirmEmail, confirmPassword } = req.body;
-
-	if (!email || !password || !confirmEmail || !confirmPassword) {
+	const { email, password, confirmEmail, confirmPassword, name } = req.body;
+	const date = new Date();
+	const dateNow = `${date.getMonth()+1}, ${date.getDate()}, ${date.getFullYear()}`
+	if (!email || !password || !confirmEmail || !confirmPassword || !name) {
 		res.redirect("/join/signup");
 	} else if (email === confirmEmail && password === confirmPassword) {
-		const getData = new accountUser(email, password);
+		const getData = new accountUser(email, password, name, dateNow);
 		getData.saveAccount();
 		res.redirect("/join/login");
 	} else {
@@ -35,7 +36,8 @@ exports.loginPage = (req, res) => {
 		title: "Login Page",
 		text: "Sign Up",
 		titleForm: "Login",
-    accountUser: dataUser,
+		accountUser: dataUser,
+		isLogout: false,
 	});
 };
 
@@ -52,4 +54,3 @@ exports.postLogin = (req, res) => {
 		}
 	}, 100);
 };
-

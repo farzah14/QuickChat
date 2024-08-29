@@ -1,0 +1,20 @@
+<%- include("./partials/head.ejs") %>
+</head>
+
+<body>
+    <main class="container mx-auto mt-10 p-5">
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h1 class="text-2xl font-bold mb-4">Profile</h1>
+            <% for(let profile of data) { %>
+                <div class="mb-6">
+                    <p class="text-lg"><strong>Name :</strong> <%= profile.name %></p>
+                    <p class="text-lg"><strong>Email :</strong> <%= profile.email %></p>
+                    <p class="text-lg"><strong>Joined :</strong> <%= profile.joined %></p>
+                </div>
+            <% } %>
+            <button onclick="window.history.back()" class="bg-blue-500 text-white py-2 px-4 rounded">
+                Back
+            </button>
+        </div>
+    </main>
+<%- include("./partials/end.ejs") %>

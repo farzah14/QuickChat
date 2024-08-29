@@ -8,6 +8,7 @@ exports.messagePage = (req, res) => {
 		create: false,
 		messages: data,
     accountUser: dataUser,
+    isLogout: false,
 	});
 };
 
@@ -16,6 +17,7 @@ exports.createMessagePage = (req, res) => {
     title: "Message",
 		create: true,
     accountUser: dataUser,
+    isLogout: false,
 	});
 };
 

@@ -6,10 +6,11 @@ const port = process.env.PORT || 8080;
 const path = require("path");
 const home = require("./routes/home");
 const message = require("./routes/message");
-const posts = require("./routes/posts");
+const logoutRoute = require("./routes/logout");
+const showProfile = require("./routes/profile");
 const createAccount = require("./routes/loginSignUp");
 
-const dataUser = require("./data/account.json")
+const dataUser = require("./data/account.json");
 
 app.use(express.static(path.join(__dirname, "views")));
 app.set("view engine", "ejs");
@@ -20,13 +21,15 @@ app.get("/", (req, res) => {
 	res.render("main", {
 		title: "Main Page",
 		accountUser: dataUser,
+		isLogout: false,
 	});
 });
 
 app.use("/join", createAccount);
 app.use("/home", home);
 app.use("/message", message);
-app.use("/posts", posts);
+app.use("/profile", showProfile);
+// app.use('/', logoutRoute);
 
 // not found middleware
 app.use((req, res) => {
