@@ -18,16 +18,30 @@
               <div class="grid grid-cols-3">
                 <% for (let message of messages.reverse()) { %>
                   <div class="bg-slate-100 shadow-lg rounded-lg p-6 mt-6 mx-auto w-96">
-                    <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-lg font-semibold text-gray-700 truncate max-w-xs">
-                            From: <span class="text-blue-500"><%= message.name %></span>
-                        </h2>
+                    <div class="flex flex-col justify-start mb-4">
+                      <% for(let name of accountUser) { %>
+                        <h2 class="text-base font-semibold text-gray-700 truncate max-w-xs">
+                          From: <span class="text-red-500">
+                            <%= name.name %>
+                          </span></h2>
+                        <% } %>
+                          <h2 class="text-base font-semibold text-gray-700 truncate max-w-xs">
+                            To: <span class="text-blue-500">
+                              <%= message.name %>
+                            </span></h2>
                     </div>
-                    <p class="text-gray-600"><%= message.message %></p>
-                </div>
-              <% } %>
-              
-            <% } %>
+                    <div class="flex flex-row justify-between">
+                      <p class="text-gray-800">
+                        <%= message.message %>
+                      </p>
+                      <p class="text-stone-500 italic">
+                        <%= message.country %>
+                      </p>
+                    </div>
+                  </div>
+                  <% } %>
+
+                    <% } %>
               </div>
               <% } else { %>
                 <form method="POST" action="/message/create">
@@ -93,7 +107,6 @@
                   </div>
                 </form>
                 <% } %>
-
                   <% } %>
 
 

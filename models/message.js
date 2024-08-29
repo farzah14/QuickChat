@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const util = require("../util/mainPath");
-
 const pathData = path.join(util, "data", "message.json");
 
 module.exports = class Message {
@@ -23,7 +22,7 @@ module.exports = class Message {
 					console.log(`File Error : ${err}`);
 				}
 			}
-      messages = JSON.parse(currentMessage);
+			messages = JSON.parse(currentMessage);
 
 			messages.push({
 				name: this.name,
