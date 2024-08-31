@@ -12,12 +12,12 @@ exports.signUpPage = (req, res) => {
 		text: "Login",
 		titleForm: "Sign Up",
 		accountUser: dataUser,
-		isLogout: false,
+		isLogout: false
 	});
 };
 
 exports.postSignUp = (req, res) => {
-	const { email, password, confirmEmail, confirmPassword, name } = req.body;
+  const { email, password, confirmEmail, confirmPassword, name } = req.body;
 	const date = new Date();
 	const dateNow = `${date.getMonth()+1}, ${date.getDate()}, ${date.getFullYear()}`
 	if (!email || !password || !confirmEmail || !confirmPassword || !name) {
@@ -32,12 +32,13 @@ exports.postSignUp = (req, res) => {
 };
 
 exports.loginPage = (req, res) => {
-	res.render("login", {
-		title: "Login Page",
+  res.render("login", {
+    title: "Login Page",
 		text: "Sign Up",
 		titleForm: "Login",
 		accountUser: dataUser,
 		isLogout: false,
+    isLogin:true
 	});
 };
 

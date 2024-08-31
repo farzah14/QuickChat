@@ -4,11 +4,12 @@ const util = require("../util/mainPath");
 const pathData = path.join(util, "data", "message.json");
 
 module.exports = class Message {
-	constructor(name, message, gender, country) {
+	constructor(name, message, gender, country, id) {
 		this.name = name;
 		this.message = message;
 		this.gender = gender;
 		this.country = country;
+		this.id = id;
 	}
 
 	saveMessage() {
@@ -29,6 +30,7 @@ module.exports = class Message {
 				message: this.message,
 				gender: this.gender,
 				country: this.country,
+				id: Math.random().toFixed(2).toString(),
 			});
 
 			fs.writeFile(pathData, JSON.stringify(messages), (err) => {

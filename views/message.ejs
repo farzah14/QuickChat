@@ -4,22 +4,33 @@
     <%- include("./partials/navbar.ejs", { accountUser: accountUser }) %>
   </header>
   <main>
-    <% if (accountUser.length===0) { %>
+    <% if (!accountUser || accountUser.length===0 || isLogout) { %>
       <script>
+        accountUser = [];
         alert("Please Login or Sign Up")
         window.location.pathname = "/"
       </script>
       <% } else { %>
         <% if (!create) { %>
           <% if (messages.length===0) { %>
-            <p class="text-rose-700 text-4xl flex justify-center items-center m=auto">Messages Not Found
-            </p>
+            <div class="flex flex-col justify-center items-center h-screen bg-gray-100">
+              <img src=../img/communication.png alt="No Messages" class="mb-4 size-24">
+              <p class="text-4xl font-bold text-red-500 mb-2">Messages Not Found</p>
+              <p class="text-lg text-gray-600 mb-6 text-center">It seems there are no messages to display. Please check
+                back later or create a new message.</p>
+              <a href="/message/create"
+                class="mt-4 rounded-md bg-blue-600 px-4 py-2 text-white font-semibold shadow-md hover:bg-blue-500 transition duration-300">Create
+                a New Message</a>
+            </div>
+
             <% } else { %>
               <div class="grid grid-cols-3">
                 <% for (let message of messages.reverse()) { %>
-                  <div class="bg-slate-100 shadow-lg rounded-lg p-6 mt-6 mx-auto w-96">
+                  <div class="bg-slate-100 shadow-lg rounded-lg p-6 mt-6 mx-auto w-96 hover:cursor-pointer hover:scale-105 transition ease-in-out">
                     <div class="flex flex-col justify-start mb-4">
                       <% for(let name of accountUser) { %>
+                        <img src="../img/remove.png" alt="iconRemove" class="size-6 absolute ml-80">
+                        <img src="../img/edit.png" alt="iconRemove" class="size-6 absolute ml-72">
                         <h2 class="text-base font-semibold text-gray-700 truncate max-w-xs">
                           From: <span class="text-red-500">
                             <%= name.name %>
@@ -29,9 +40,9 @@
                             To: <span class="text-blue-500">
                               <%= message.name %>
                             </span></h2>
-                    </div>
-                    <div class="flex flex-row justify-between">
-                      <p class="text-gray-800">
+                          </div>
+                          <div class="flex flex-row justify-between">
+                            <p class="text-gray-800">
                         <%= message.message %>
                       </p>
                       <p class="text-stone-500 italic">

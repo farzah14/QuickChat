@@ -23,7 +23,7 @@ exports.createMessagePage = (req, res) => {
 exports.createMessageData = (req, res) => {
 	const { nameUser, message, gender, country } = req.body;
 	if (nameUser !== "" && message !== "" && country !== "") {
-		const messageUser = new messageModels(nameUser, message, gender, country);
+		const messageUser = new messageModels(nameUser, message, gender, country, null);
 		messageUser.saveMessage();
 	}
 	res.redirect("/message/create");
