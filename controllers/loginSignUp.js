@@ -23,7 +23,7 @@ exports.postSignUp = (req, res) => {
 	if (!email || !password || !confirmEmail || !confirmPassword || !name) {
 		res.redirect("/join/signup");
 	} else if (email === confirmEmail && password === confirmPassword) {
-		const getData = new accountUser(email, password, name, dateNow);
+		const getData = new accountUser(email, password, name, dateNow); 
 		getData.saveAccount();
 		res.redirect("/join/login");
 	} else {
