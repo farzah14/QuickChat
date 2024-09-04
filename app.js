@@ -4,7 +4,6 @@ const dotenv = require("dotenv");
 dotenv.config({ path: `.env.${process.env.NODE}` });
 const port = process.env.PORT || 8080;
 const path = require("path");
-const home = require("./routes/home");
 const message = require("./routes/message");
 const logoutRoute = require("./routes/logout");
 const showProfile = require("./routes/profile");
@@ -26,7 +25,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/join", createAccount);
-app.use("/home", home);
 app.use("/message", message);
 app.use("/profile", showProfile);
 app.use('/logout', logoutRoute);

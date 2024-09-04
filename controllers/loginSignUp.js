@@ -49,9 +49,9 @@ exports.postLogin = (req, res) => {
 	);
 	setTimeout(() => {
 		if (userData) {
-			res.redirect("/home?message=Login%20Success");
+			res.redirect("/message?message=Login%20Success");
 		} else {
 			res.redirect("/join/login?message=Login%20Failed");
 		}
-	}, 100);
+	}, 1000);
 };
