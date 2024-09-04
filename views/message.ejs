@@ -4,7 +4,7 @@
     <%- include("./partials/navbar.ejs", { accountUser: accountUser }) %>
   </header>
   <main>
-    <% if (!accountUser || accountUser.length===0 || isLogout) { %>
+    <% if (accountUser.length===0 ) { %>
       <script>
         accountUser = [];
         alert("Please Login or Sign Up")
@@ -30,12 +30,12 @@
                     class="bg-slate-100 shadow-lg rounded-lg p-6 mt-6 mx-auto w-96 hover:cursor-pointer hover:scale-105 transition ease-in-out">
                     <div class="flex flex-col justify-start mb-4">
                       <% for(let name of accountUser) { %>
-                        <a href="/message/delete/<%=message.id%>">
-                          <img src="../img/remove.png" alt="iconRemove"class="size-6 absolute ml-80">
-                        </a>
-                        <a href="/edit">
-                          <img src="../img/edit.png" alt="iconRemove" class="size-6 absolute ml-72">
-                        </a>
+                        <form action="/message/delete" method="POST">
+                          <input type="hidden" name="id" value="<%=message.id%>">
+                          <button class="absolute" type="submit">
+                            <img src="../img/remove.png" alt="iconRemove" class="size-8  ml-72">
+                          </button>
+                        </form>
                         <h2 class="text-base font-semibold text-gray-700 truncate max-w-xs">
                           From: <span class="text-red-500">
                             <%= name.name %>

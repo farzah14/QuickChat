@@ -1,6 +1,7 @@
-// const express = require("express");
-// const route = express.Router();
-// const logoutControllers = require("../controllers/logout");
-// route.get("/logout", logoutControllers.logoutPage);
+const express = require("express");
+const route = express.Router();
+const logoutControllers = require("../controllers/logout");
 
-// module.exports = route;
+route.get("/", logoutControllers.logoutPage);
+// route.post("/", logoutControllers.postLogoutPage);
+module.exports = route;

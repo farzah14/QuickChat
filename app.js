@@ -29,7 +29,7 @@ app.use("/join", createAccount);
 app.use("/home", home);
 app.use("/message", message);
 app.use("/profile", showProfile);
-// app.use('/', logoutRoute);
+app.use('/logout', logoutRoute);
 
 // not found middleware
 app.use((req, res) => {
