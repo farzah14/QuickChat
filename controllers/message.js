@@ -20,6 +20,8 @@ exports.createMessagePage = (req, res) => {
 		title: "Message",
 		create: true,
 		accountUser: dataUser,
+		editing: false,
+		messageUser: "",
 	});
 };
 
@@ -50,16 +52,35 @@ exports.messageDelete = (req, res) => {
 };
 
 exports.getEditMessage = (req, res) => {
+	const getId = req.params.id;
+	const result = data.find((dataMessage) => dataMessage.id === getId);
 	res.render("message", {
 		title: "Message",
 		create: true,
 		accountUser: dataUser,
 		isLogout: false,
+		editing: true,
+		messageUser: result,
 	});
+};
+exports.postEditMessage = (req, res) => {
+  const getId = req.params.id;
+  const { nameUser, message, gender, country } = req.body;
+  if (nameUser && message && country) {
+    const messageUser = new messageModels(
+      nameUser,
+      message,
+      gender,
+      country,
+      getId
+    );
+    messageUser.saveMessage();
+  }
+  res.redirect("/message/create");
 };
 exports.getDetailMessage = (req, res) => {
 	const getId = req.params.id;
-	const result = data.find(dataMessage => dataMessage.id === getId);
+	const result = data.find((dataMessage) => dataMessage.id === getId);
 	res.render("detailMessage", {
 		title: "Message Details",
 		message: result,

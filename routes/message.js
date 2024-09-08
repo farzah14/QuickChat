@@ -9,7 +9,8 @@ route.get("/", messageControllers.messagePage);
 route.get("/create", messageControllers.createMessagePage);
 route.post("/create", messageControllers.createMessageData);
 route.post("/delete", messageControllers.messageDelete);
-route.get("/edit", messageControllers.getEditMessage);
+route.get("/edit/:id", messageControllers.getEditMessage);
+route.post("/edit", messageControllers.postEditMessage);
 route.get("/:id", messageControllers.getDetailMessage);
 
 module.exports = route;

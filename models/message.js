@@ -23,8 +23,21 @@ module.exports = class Message {
 					console.log(`File Error : ${err}`);
 				}
 			}
-			messages = JSON.parse(currentMessage);
 
+			const existingMessageIndex = messages.findIndex(
+				(msg) => msg.id === this.id
+			);
+			if (existingMessageIndex >= 0) {
+				// Jika message ditemukan, update
+				messages = JSON.parse(currentMessage);
+				messages[existingMessageIndex] = {
+					name: this.name,
+					message: this.message,
+					gender: this.gender,
+					country: this.country,
+					id: this.id,
+				};
+			}
 			messages.push({
 				name: this.name,
 				message: this.message,
@@ -32,7 +45,6 @@ module.exports = class Message {
 				country: this.country,
 				id: Math.random().toFixed(2).toString(),
 			});
-
 			fs.writeFile(pathData, JSON.stringify(messages), (err) => {
 				if (err) {
 					console.log("Can't write message:", writeErr);

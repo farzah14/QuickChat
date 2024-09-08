@@ -38,6 +38,9 @@
                         <a href="/message/<%=message.id%>" class="absolute">
                           <img src="../img/info.png" alt="iconRemove" class="size-6 ml-72">
                         </a>
+                        <a href="/message/edit/<%=message.id%>" class="absolute">
+                          <img src="../img/edit.png" alt="iconRemove" class="size-6 ml-64">
+                        </a>
                         <h2 class="text-base font-semibold text-gray-700 truncate max-w-xs">
                           From: <span class="text-red-500">
                             <%= name.name %>
@@ -62,7 +65,7 @@
                     <% } %>
               </div>
               <% } else { %>
-                <form method="POST" action="/message/create">
+                <form method="POST" action="/message/<%= editing ? 'edit' : 'create' %>">
                   <div class="flex justify-center items-center">
                     <div class="border border-neutral-400 rounded-lg py-6 px-12 mt-4 bg-slate-200">
                       <h2 class="text-base font-semibold leading-7 text-gray-900 text-center">Create Message</h2>
@@ -72,7 +75,7 @@
                         <div class="mt-2">
                           <input id="name" name="nameUser" type="text"
                             class="block w-64 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 sm:text-sm sm:leading-6"
-                            placeholder="Recipient's Name">
+                            placeholder="Recipient's Name" value="<% if (editing) { %><%=messageUser.name%><% } %>">
                         </div>
                       </div>
 
@@ -80,7 +83,7 @@
                         <label for="about" class="block text-sm font-medium leading-6 text-gray-900">Message</label>
                         <div class="mt-2">
                           <textarea id="message" name="message" rows="3"
-                            class="block w-64 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 sm:text-sm sm:leading-6"></textarea>
+                            class="block w-64 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 sm:text-sm sm:leading-6"><% if (editing) { %><%=messageUser.message%><% } %></textarea>
                         </div>
                       </div>
 
@@ -88,15 +91,15 @@
                         <label for="gender" class="font-medium leading-6 text-gray-900">Gender</label>
                         <div class="mt-2 flex flex-row gap-x-8">
                           <div>
-                            <input id="gender" value="male" type="checkbox" name="gender"
+                            <input id="gender" value="male" type="checkbox" name="gender" 
                               class="default:ring-2 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 sm:text-sm sm:leading-6 classCheck"
-                              id="check">
+                              id="check" <%=messageUser.gender === "male" ? "checked" : ""%>
                             <label for="male">Male</label>
                           </div>
                           <div>
                             <input id="gender" value="female" type="checkbox" name="gender"
                               class="default:ring-2 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 sm:text-sm sm:leading-6 classCheck"
-                              id="check">
+                              id="check" <%=messageUser.gender === "female" ? "checked" : ""%>>
                             <label for="female">Female</label>
                           </div>
                           <div>
@@ -112,7 +115,7 @@
                         <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
                         <input id="country" name="country" type="text"
                           class="block w-64 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 sm:text-sm sm:leading-6"
-                          placeholder="Indonesia">
+                          placeholder="Indonesia" value="<% if (editing) { %><%=messageUser.country%><% } %>">
                       </div>
 
                       <div class="mt-6 flex items-center justify-end gap-x-6">
