@@ -49,11 +49,19 @@ exports.messageDelete = (req, res) => {
 	res.redirect("/message");
 };
 
-exports.getEditMessage = (req, res)=>{
-  res.render("message", {
-    title: "Message",
+exports.getEditMessage = (req, res) => {
+	res.render("message", {
+		title: "Message",
 		create: true,
 		accountUser: dataUser,
 		isLogout: false,
-  })
-}
+	});
+};
+exports.getDetailMessage = (req, res) => {
+	const getId = req.params.id;
+	const result = data.find(dataMessage => dataMessage.id === getId);
+	res.render("detailMessage", {
+		title: "Message Details",
+		message: result,
+	});
+};

@@ -91,13 +91,3 @@ document.addEventListener("DOMContentLoaded", function () {
 		alert(message);
 	}
 });
-
-// const logoutBtn = document.querySelector("#logout");
-// const mainPage = document.querySelector("#main");
-// const fs = require("fs");
-// logoutBtn.addEventListener("click", () => {
-// 	mainPage.innerHTML = `<h1 class="uppercase text-6xl text-slate-400 font-bold text-shadow-shadowText text-center mt-40">welcome to za'ah blogpost</h1>
-//   <div class="flex flex-row justify-center items-center gap-x-10 mt-10">
-//   <a href="/join/signup" class="flex rounded-md border-2 border-lime-600 text-emerald-400 font-medium w-32 h-14 justify-center items-center rounded-md text-xl">Sign Up</a>
-//   <a href="/join/login" class="flex bg-emerald-600 text-white font-medium w-32 h-14 justify-center items-center rounded-md text-xl">Login</a></div>`;
-// });

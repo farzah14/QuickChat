@@ -6,14 +6,13 @@
   <main>
     <% if (accountUser.length===0 ) { %>
       <script>
-        accountUser = [];
         alert("Please Login or Sign Up")
         window.location.pathname = "/"
       </script>
       <% } else { %>
         <% if (!create) { %>
           <% if (messages.length===0) { %>
-            <div class="flex flex-col justify-center items-center h-screen bg-gray-100">
+            <div class="flex flex-col justify-center items-center mt-24">
               <img src=../img/communication.png alt="No Messages" class="mb-4 size-24">
               <p class="text-4xl font-bold text-red-500 mb-2">Messages Not Found</p>
               <p class="text-lg text-gray-600 mb-6 text-center">It seems there are no messages to display. Please check
@@ -33,9 +32,12 @@
                         <form action="/message/delete" method="POST">
                           <input type="hidden" name="id" value="<%=message.id%>">
                           <button class="absolute" type="submit">
-                            <img src="../img/remove.png" alt="iconRemove" class="size-8  ml-72">
+                            <img src="../img/remove.png" alt="iconRemove" class="size-6  ml-80">
                           </button>
                         </form>
+                        <a href="/message/<%=message.id%>" class="absolute">
+                          <img src="../img/info.png" alt="iconRemove" class="size-6 ml-72">
+                        </a>
                         <h2 class="text-base font-semibold text-gray-700 truncate max-w-xs">
                           From: <span class="text-red-500">
                             <%= name.name %>
